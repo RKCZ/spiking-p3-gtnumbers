@@ -40,7 +40,7 @@ class ANN:
         return self.model
 
     def train(self, x_train, y_train, x_val, y_val):
-        early_stopping = EarlyStopping(
+        es = EarlyStopping(
             monitor='val_loss',
             patience=5,
             verbose=1,
@@ -51,7 +51,7 @@ class ANN:
             y_train,
             epochs=self.epochs,
             shuffle=True,
-            callbacks=[early_stopping],
+            callbacks=[es],
             validation_data=(x_val, y_val)
         )
         return history
